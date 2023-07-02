@@ -7,5 +7,11 @@ window.addEventListener('DOMContentLoaded', async () => {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
+
+    const pointId = 0;
+    const pointResponse = await fetch(`${API_HOST}/points/${pointId}`);
+    const pointFeature = await pointResponse.json();
+
+    L.geoJSON(pointFeature).addTo(map);
 });
 

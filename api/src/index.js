@@ -27,6 +27,8 @@ const PATHS = {
 }
 
 const requestListener = (req, res) => {
+    res.setHeader("access-control-allow-origin", "*");
+    res.setHeader("access-control-allow-headers", "GET");
     res.setHeader("Content-Type", "application/json");
     switch (true) {
         case PATHS.index.test(req.url):
