@@ -20,20 +20,27 @@ const points = [{
   ]
 }];
 
+const PATHS = {
+    index: /^\/$/,
+    points: /^(\/points\/?)$/i,
+    point: /^(\/points\/)\d+\/?$/i,
+}
+
 const requestListener = (req, res) => {
     res.setHeader("Content-Type", "application/json");
-    switch (req.url) {
-        case "/":
+    switch (true) {
+        case PATHS.index.test(req.url):
             res.writeHead(200);
             res.end(JSON.stringify({ message: "Okay" }));
             break
-        case "/points":
+        case PATHS.points.test(req.url):
             res.writeHead(200);
             res.end(JSON.stringify(points));
             break
-        case "/points/0":
+        case PATHS.point.test(req.url):
             res.writeHead(200);
-            res.end(JSON.stringify(points[0]));
+            const point = (req.url).split('/')[2];
+            res.end(JSON.stringify(points[point]));
             break
         default:
             res.writeHead(404);
