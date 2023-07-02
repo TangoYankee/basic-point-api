@@ -38,9 +38,14 @@ const requestListener = (req, res) => {
             res.end(JSON.stringify(points));
             break
         case PATHS.point.test(req.url):
-            res.writeHead(200);
             const point = (req.url).split('/')[2];
-            res.end(JSON.stringify(points[point]));
+            if(point < points.length) {
+                res.writeHead(200);
+                res.end(JSON.stringify(points[point]));
+            } else {
+                res.writeHead(404);
+                res.end(JSON.stringify({ message: "Point does not exist" }));
+            }
             break
         default:
             res.writeHead(404);
