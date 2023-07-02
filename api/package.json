@@ -1,0 +1,14 @@
+{
+  "name": "api",
+  "version": "0.1.0",
+  "description": "HTTP server of a geojson point",
+  "scripts": {
+    "start:dev": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Timothy Miller",
+  "license": "MIT"
+}
