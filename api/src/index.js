@@ -3,7 +3,7 @@ const http = require('http');
 const host = `127.0.0.1`;
 const port = 8000;
 
-const point = {
+const points = [{
   "type": "FeatureCollection",
   "features": [
     {
@@ -18,7 +18,7 @@ const point = {
       }
     }
   ]
-}
+}];
 
 const requestListener = (req, res) => {
     res.setHeader("Content-Type", "application/json");
@@ -27,9 +27,13 @@ const requestListener = (req, res) => {
             res.writeHead(200);
             res.end(JSON.stringify({ message: "Okay" }));
             break
-        case "/point":
+        case "/points":
             res.writeHead(200);
-            res.end(JSON.stringify(point));
+            res.end(JSON.stringify(points));
+            break
+        case "/points/0":
+            res.writeHead(200);
+            res.end(JSON.stringify(points[0]));
             break
         default:
             res.writeHead(404);
