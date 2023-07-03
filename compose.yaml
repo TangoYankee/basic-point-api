@@ -1,0 +1,7 @@
+services:
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/letsencrpt:/etc/letsencrpt
